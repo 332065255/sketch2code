@@ -1,6 +1,6 @@
 import sketch from 'sketch'
 // documentation: https://developer.sketchapp.com/reference/api/
 
-export default function() {
-  sketch.UI.message("It's alive 🙌666")
+export default function (){
+    sketch.UI.message("It's alive 🙌react")
 }

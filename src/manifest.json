@@ -3,15 +3,20 @@
   "icon": "icon.png",
   "commands": [
     {
-      "name": "my-command",
-      "identifier": "sketch2code.my-command-identifier",
-      "script": "./my-command.js"
+      "name": "导出react(h5)",
+      "identifier": "导出react(h5)",
+      "script": "./react.js"
+    },
+    {
+      "name": "导出vue(h5)",
+      "identifier": "导出vue(h5)",
+      "script": "./vue.js"
     }
   ],
   "menu": {
     "title": "sketch2code",
     "items": [
-      "sketch2code.my-command-identifier"
+      "导出react(h5)","导出vue(h5)"
     ]
   }
 }
