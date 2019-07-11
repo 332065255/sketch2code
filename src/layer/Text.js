@@ -82,7 +82,7 @@ class TextLayer extends LayerProtocol {
             'opacity': this.layer.style.opacity,
         };
         // otherStyle['line-height']=otherStyle['line-height']=='normal'?util.px2rem(height):otherStyle['line-height'],
-        console.log(this.layer.style)
+        // console.log(this.layer.style)
         /**
          * alignment
          * 0:左对齐

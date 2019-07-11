@@ -3,7 +3,10 @@ const { execSync } = require('@skpm/child_process');
 var util = {
     isH5:true,
     isReact:false,
+    isVue:false,
+    isHTML:false,
     minWidthforPC:1080,
+    isPreview:false,//是否是预览
     getEditCSS(){
         return this.isH5?`.html_ant{
             border: 10px solid #ff0000;

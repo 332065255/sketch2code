@@ -16,7 +16,7 @@ const rename = function (name) {
     return nextName;
 };
 const handleItem = function (item) {
-    console.log('item_name:',item.name)
+    // console.log('item_name:',item.name)
     let result = {};
     result.id = item.do_objectID;
     result.frame = item.frame || {};
@@ -27,7 +27,6 @@ const handleItem = function (item) {
     let name = item.name ? item.name : '未命名';
     if(name.indexOf('2html_Animation')==-1)
     {
-        console.log(name);
         name = name.replace(/[\u4e00-\u9fa5]*/, function (m) {
             return pinyin(m, {
                 style: 'STYLE_NORMAL'
@@ -103,7 +102,7 @@ const handleItem = function (item) {
 const layerParser = function (item) {
     let element = {};
     element = handleItem(item);
-    console.log('组件:',element.symbolJson&&element.symbolJson.name);
+
     if(element.symbolJson&&element.symbolJson.name&&components[element.symbolJson.name]){
 
     }else{

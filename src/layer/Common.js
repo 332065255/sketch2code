@@ -13,7 +13,7 @@ class CommonLayer extends LayerProtocol {
     getStyle () {
         
         let width = this.layer.frame.width, height = this.layer.frame.height;
-        console.log(this.layer.name)
+        // console.log(this.layer.name)
         // console.log('父级:',this.parentLayer)
         if(this.parentLayer&&this.parentLayer.isMask){
             this.layer.frame.x = this.layer.frame.x - this.parentLayer.frame.x
@@ -30,7 +30,7 @@ class CommonLayer extends LayerProtocol {
             'border-style': this.layer.style.borderStyle,
             'box-shadow': this.layer.style.boxShadow,
         };
-        console.log(this.layer.name,this.layer.style)
+        // console.log(this.layer.name,this.layer.style)
         let parentOtherStyle = {};
 
         if(this.parentLayer && this.parentLayer.type == 'shapeGroup') {

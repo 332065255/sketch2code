@@ -42,18 +42,24 @@ class BitmapLayer extends LayerProtocol {
         imgStyle['position'] = 'absolute';
         imgStyle['width'] = '100%';
         imgStyle['height'] = '100%';
+        
+        let temp_div = Object.assign({},imgStyle);
         if(color) {
-            imgStyle['left'] = '-10000px';
-            imgStyle['-webkit-filter'] = `drop-shadow(${color} 10000px 0px)`;
+            temp_div['left'] = '-10000px';
+            temp_div['filter'] = `drop-shadow(${color} 10000px 0px)`;
+            temp_div['-webkit-filter'] = `drop-shadow(${color} 10000px 0px)`;
         }
+        
         delete layer.finalStyle['background-color'];
         layer.finalStyle.overflow = 'hidden';
 
         return `<div id="${layer.id}" style=${util.getStyleString(layer.finalStyle)} ${this.getClass(layer.name)}>
-            <img style=${util.getStyleString(imgStyle)} ${util.isReact?`src={require('./${path.join(this.imagePath, layer.image)}')}`:`src="${path.join(this.imagePath, layer.image)}"`}   >
-            </img>
-        </div>
-        `;
+                    <div style=${util.getStyleString(temp_div)}>
+                        <img style=${util.getStyleString(imgStyle)} ${util.isReact?`src={require('./${path.join(this.imagePath, layer.image)}')}`:`src="${path.join(this.imagePath, layer.image)}"`}   >
+                        </img>
+                    </div>
+                </div>
+                `;
 
     }
 }

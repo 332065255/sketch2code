@@ -11,12 +11,18 @@
       "name": "导出vue(h5)",
       "identifier": "导出vue(h5)",
       "script": "./vue.js"
+    },
+    {
+      "name": "导出前预览(h5)",
+      "identifier": "导出前预览(h5)",
+      "script": "./preview.js"
     }
+    
   ],
   "menu": {
     "title": "sketch2code",
     "items": [
-      "导出react(h5)","导出vue(h5)"
+      "导出前预览(h5)","导出react(h5)","导出vue(h5)","my-plugin.my-command-identifier"
     ]
   }
 }

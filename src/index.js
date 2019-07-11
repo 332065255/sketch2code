@@ -12,7 +12,11 @@ var dom = require('sketch/dom');
 var fs = require('@skpm/fs');
 const { execSync } = require('@skpm/child_process');
 var _path="";
-export default function(){
+var art_id=null;
+var page_id=null;
+export default function(id,id2){
+    art_id=id;
+    page_id=id2;
     var document = dom.getSelectedDocument();
     var pages = (document.selectedLayers.layers[0])
     _path = (document.path+"");
@@ -35,6 +39,21 @@ export default function(){
     // 对每个页面进行处理解析
     files.forEach((f, i) => {
         let data = fileStore[f];
+
+        if(page_id!=null){
+            if(data.do_objectID != page_id){
+                return;
+            }
+            if(art_id!=null){
+                var layers = data.layers;
+                layers.map(item=>{
+                    if(item.do_objectID == art_id){
+                        data.layers=[item]
+                    }
+                })
+            }
+        }
+
         let result = layerParser(data);
         outResults.push(result);
     });
@@ -43,11 +62,19 @@ export default function(){
             handleArtBoard(result, `page-${result.name}`);
 
             if(fs.existsSync(_path+'/output/images')){
-                util.mkdir(`${_path+"/output/html/page-"+result.name+""}`)
-                execSync(`cp -rf ${_path+"/output/images"} ${_path+"/output/html/page-"+result.name+"/images"}`)
+                if(!util.isHTML){
+                    util.mkdir(`${_path+"/output/html/page-"+result.name+""}`)
+                    execSync(`cp -rf ${_path+"/output/images"} ${_path+"/output/html/page-"+result.name+"/images"}`)
+                }else{
+                    util.mkdir(`${_path+"/output/html/preview"}`)
+                    execSync(`cp -rf ${_path+"/output/images"} ${_path+"/output/html/preview/images"}`)
+                }
+                
             }
             
-            execSync(`open ${_path}/output/html/page-${result.name}/`);
+            if(!util.isPreview){
+                execSync(`open ${_path}/output/html/page-${result.name}/`);
+            }
         }
     });
     // 输出模板页面 js 中的页面配置数据
@@ -60,8 +87,8 @@ export default function(){
 const handleArtBoard = (layer, pageName) => {
     if(layer.type == 'artboard') {
         StyleStore.reset();
-        styleRender(layer, null,util.isReact?'./':'../');
-        var html = htmlRender(layer, null, util.isReact?'./':'../');
+        styleRender(layer, null,'./');
+        var html = htmlRender(layer, null, './');
         html = template(html, layer,`${layer.name}.css`);
         if(util.isReact){
             util.mkdir(`${_path+"/output/html"}/${pageName}`)
@@ -78,9 +105,16 @@ const handleArtBoard = (layer, pageName) => {
             `);
             fs.writeFileSync(`${_path}/output/html/${pageName}/${layer.name}.css`, StyleStore.toString());
             fs.writeFileSync(`${_path}/output/html/${pageName}/userEdit.scss`,util.getEditCSS());
-        }else{
-            fs.writeFileSync(`${_path}/output/html/${pageName}/artboard-${layer.name}.html`, html);
-            fs.writeFileSync(`${_path}/output/html/${pageName}/artboard-${layer.name}.css`, StyleStore.toString());
+        }else if(util.isHTML){
+            // fs.writeFileSync(`${_path}/output/html/${pageName}/artboard-${layer.name}.html`, html);
+            // fs.writeFileSync(`${_path}/output/html/${pageName}/artboard-${layer.name}.css`, StyleStore.toString());
+            util.mkdir(`${_path+"/output/html"}/preview`)
+            fs.writeFileSync(`${_path}/output/html/preview/preview.html`, html,{
+                encoding:'utf8'
+            });
+            fs.writeFileSync(`${_path}/output/html/preview/artboard-${layer.name}.css`, StyleStore.toString(),{
+                encoding:'utf8'
+            });
         }
         
         outPages.push({
