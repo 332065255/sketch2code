@@ -670,6 +670,10 @@
   dependencies:
     cocoascript-class "^0.1.2"
 
+"@skpm/events@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/@skpm/events/-/events-0.2.0.tgz#73381a78f680dd512326434db2ed244a7eddb209"
+
 "@skpm/file-loader@^2.0.1":
   version "2.0.1"
   resolved "https://registry.npmjs.org/@skpm/file-loader/-/file-loader-2.0.1.tgz#afd7624a77eb567550d7cb88f5a6e68a12785e3f"
@@ -2198,7 +2202,7 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash@^4.17.11, lodash@^4.17.5:
+lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.5:
   version "4.17.14"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
 

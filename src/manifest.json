@@ -3,6 +3,16 @@
   "icon": "icon.png",
   "commands": [
     {
+      "script": "handlers.js",
+      "handlers": {
+        "actions": {
+          "OpenDocument": "onOpenDocument",
+          "DocumentSaved": "onDocumentSaved"
+          
+        }
+      }
+    },
+    {
       "name": "导出react(h5)",
       "identifier": "导出react(h5)",
       "script": "./react.js"

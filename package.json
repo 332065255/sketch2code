@@ -26,9 +26,11 @@
   "author": "高凌霄 <gaolingxiao@meituan.com>",
   "dependencies": {
     "@skpm/child_process": "0.3.0",
+    "@skpm/events": "^0.2.0",
     "@skpm/fs": "^0.2.5",
     "@skpm/timers": "^0.2.0",
     "bplist-parser": "^0.1.1",
+    "lodash": "^4.17.14",
     "node-pinyin": "^0.2.3",
     "pinyin": "^2.9.0",
     "sketch-module-web-view": "^3.0.7"
