@@ -13,7 +13,10 @@ coscript.setShouldKeepAround(true);
 let fiber = require('sketch/async').createFiber()
 export default function (){
     if(Settings.settingForKey('browserWindow')){
-      BrowserWindow.fromId(Settings.settingForKey('browserWindow').id).destroy();
+      if(BrowserWindow.fromId(Settings.settingForKey('browserWindow').id)){
+        BrowserWindow.fromId(Settings.settingForKey('browserWindow').id).destroy();
+      }
+      
     }
   
     var document = dom.getSelectedDocument();
