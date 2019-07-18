@@ -19,9 +19,10 @@ export default function(id,id2){
     page_id=id2;
     var document = dom.getSelectedDocument();
     var pages = (document.selectedLayers.layers[0])
-    _path = (document.path+"");
+    _path = ( decodeURI(document.path)+"");
     _path = _path.substring(0,_path.lastIndexOf('/'))
-    execSync(`rm -rf ${_path+"/output/*"};unzip -o ${document.path} -d ${_path+"/output"};`)
+
+    execSync(`rm -rf ${_path+"/output/*"};unzip -o ${decodeURI(document.path)} -d ${_path+"/output"};`)
     console.log('解压缩完成')
     util.mkdir(`${_path+"/output/html"}`)
     // 复制图片到结果文件夹

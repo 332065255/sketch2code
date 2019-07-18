@@ -9,7 +9,8 @@ export default function (){
     // sketch.UI.message("It's alive 🙌react")
     var document = dom.getSelectedDocument();
     document.save()
-
+    // console.log(decodeURI(document.path))
+    // return;
     const newPages = JSON.parse(JSON.stringify(document.pages));
     var selectedArtboards=[];
     newPages.forEach((page) => {
