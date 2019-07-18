@@ -7,7 +7,7 @@ import go from './index';
 var utils = require('./util');
 
 export default function (){
-    COScript.currentCOScript().shouldKeepAround = true;
+    // COScript.currentCOScript().shouldKeepAround = true;
     // sketch.UI.message("It's alive 🙌react")
     var document = dom.getSelectedDocument();
     document.save()

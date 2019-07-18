@@ -6,6 +6,7 @@ var util = {
     isVue:false,
     isHTML:false,
     minWidthforPC:1080,
+    RootFontSize:75,
     isPreview:false,//是否是预览
     getEditCSS(){
         return this.isH5?`.html_ant{
@@ -258,7 +259,7 @@ var util = {
     px2rem(value){
         if (value) {
             if(this.isH5){
-                value = value / 75;
+                value = value / this.RootFontSize;
                 value = parseFloat(value).toFixed(6);
                 return (value + 'rem');
             }else{

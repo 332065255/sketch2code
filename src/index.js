@@ -115,6 +115,35 @@ const handleArtBoard = (layer, pageName) => {
             fs.writeFileSync(`${_path}/output/html/preview/artboard-${layer.name}.css`, StyleStore.toString(),{
                 encoding:'utf8'
             });
+        }else if(util.isVue){
+            util.mkdir(`${_path+"/output/html"}/${pageName}`)
+            fs.writeFileSync(`${_path}/output/html/${pageName}/${layer.name}.vue`, html);
+            fs.writeFileSync(`${_path}/output/html/${pageName}/index.vue`, `/*eslint-disable*/
+                <template>
+                    <App/>
+                </template>
+                <script type="text/babel">
+
+                    import App from './${layer.name}';
+                    
+                    export default{
+                        props: {
+                    
+                        },
+                          data(){
+                            return {
+                            }
+                        },
+                        components: {
+                            'App':App
+                        }
+                    }
+                </script>
+                <style lang="scss" scoped>
+                </style>
+            `);
+            fs.writeFileSync(`${_path}/output/html/${pageName}/${layer.name}.css`, StyleStore.toString());
+            fs.writeFileSync(`${_path}/output/html/${pageName}/userEdit.scss`,util.getEditCSS());
         }
         
         outPages.push({

@@ -21,6 +21,30 @@ module.exports = function(html,layer,css) {
         }`
         ;
     }
+    if(util.isVue){
+        return `
+        <template>
+            ${html}
+        </template>
+        <script type="text/babel">
+
+            import './${css}';
+            import './userEdit.scss';
+            
+            export default{
+                props: {
+            
+                },
+                data(){
+                    return {
+                    }
+                },
+            }
+        </script>
+        <style lang="scss" scoped>
+        </style>
+        `
+    }
     if(util.isHTML){
         return `<html>
         <head>
